@@ -104,9 +104,9 @@ app.config['admin_allowlist'] = ADMIN_ALLOWLIST
 
 
 # Manual directory creation for TinyDB 3.x compatibility
-db_dir = os.path.dirname(DB_PATH)
-if not os.path.exists(db_dir):
-    os.makedirs(db_dir)
+# db_dir = os.path.dirname(DB_PATH)
+# if not os.path.exists(db_dir):
+#     os.makedirs(db_dir)
 # db_instance = TinyDB(DB_PATH)
 
 
