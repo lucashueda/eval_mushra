@@ -7,10 +7,6 @@ docker-compose.yml
 Gruntfile.js
 tests/
 
-# Large assets in webMUSHRA
-<!-- src/webMUSHRA/configs/resources/audio/ -->
-src/webMUSHRA/res/spatial/
-src/webMUSHRA/design/images/
 
 # Local database and cache
 db/
