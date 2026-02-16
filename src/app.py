@@ -47,12 +47,14 @@ SCOPES = ['https://www.googleapis.com/auth/drive']
 app.config['webmushra_dir'] = WEBMUSHRA_DIR
 app.config['admin_allowlist'] = ADMIN_ALLOWLIST
 # Initialize TinyDB
-db_instance = TinyDB(DB_PATH)
+
 
 # Manual directory creation for TinyDB 3.x compatibility
 db_dir = os.path.dirname(DB_PATH)
 if not os.path.exists(db_dir):
     os.makedirs(db_dir)
+db_instance = TinyDB(DB_PATH)
+
 
 app.config['db'] = db_instance
 
