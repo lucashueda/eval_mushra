@@ -1,15 +1,15 @@
 # Core Dependencies
 click
 flask==2.2.5
-ipython
-matplotlib
-numpy
+# ipython
+# matplotlib
+# numpy
 pandas
-patsy
-scipy
-seaborn
-statsmodels
-tinydb
+# patsy
+# scipy
+# seaborn
+# statsmodels
+# tinydb
 
 # Pip-only Extras
 tinyrecord

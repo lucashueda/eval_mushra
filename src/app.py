@@ -5,12 +5,12 @@ import io  # <--- CRITICAL: Was missing
 from flask import Flask, request, send_from_directory, send_file, \
     render_template, redirect, url_for, abort
 from tinyrecord import transaction
-from tinydb import TinyDB
+# from tinydb import TinyDB
 from functools import wraps
 from io import BytesIO, StringIO
 
 # Import your local modules (ensure these .py files are in the same folder)
-from . import stats, casting, utils
+from . import casting, utils
 
 app = Flask(__name__)
 
@@ -53,10 +53,10 @@ app.config['admin_allowlist'] = ADMIN_ALLOWLIST
 db_dir = os.path.dirname(DB_PATH)
 if not os.path.exists(db_dir):
     os.makedirs(db_dir)
-db_instance = TinyDB(DB_PATH)
+# db_instance = TinyDB(DB_PATH)
 
 
-app.config['db'] = db_instance
+app.config['db'] = None
 
 # --- DECORATORS ---
 def only_admin_allowlist(f):
@@ -226,40 +226,40 @@ def admin_latest(testid):
     return latest
 
 
-@app.route('/admin/stats/<testid>/<stats_type>')
-@only_admin_allowlist
-def admin_stats(testid, stats_type='mushra'):
-    collection = app.config['db'].table(testid)
-    df = casting.collection_to_df(collection)
-    df.columns = utils.flatten_columns(df.columns)
-    # analyse mushra experiment
-    try:
-        if stats_type == "mushra":
-            return stats.render_mushra(testid, df)
-    except ValueError as e:
-        return render_template(
-            'error/error.html', type="Value", message=str(e)
-        )
-    return render_template('error/404.html'), 404
+# @app.route('/admin/stats/<testid>/<stats_type>')
+# @only_admin_allowlist
+# def admin_stats(testid, stats_type='mushra'):
+#     collection = app.config['db'].table(testid)
+#     df = casting.collection_to_df(collection)
+#     df.columns = utils.flatten_columns(df.columns)
+#     # analyse mushra experiment
+#     try:
+#         if stats_type == "mushra":
+#             return stats.render_mushra(testid, df)
+#     except ValueError as e:
+#         return render_template(
+#             'error/error.html', type="Value", message=str(e)
+#         )
+#     return render_template('error/404.html'), 404
 
 @app.route(
     '/admin/download/<testid>.<filetype>',
     defaults={'show_as': 'download'})
-@app.route(
-    '/admin/download/<testid>/<statstype>.<filetype>',
-    defaults={'show_as': 'download'})
-@app.route(
-    '/download/<testid>/<statstype>.<filetype>',
-    defaults={'show_as': 'download'})
+# @app.route(
+#     '/admin/download/<testid>/<statstype>.<filetype>',
+#     defaults={'show_as': 'download'})
+# @app.route(
+#     '/download/<testid>/<statstype>.<filetype>',
+#     defaults={'show_as': 'download'})
 @app.route(
     '/download/<testid>.<filetype>',
     defaults={'show_as': 'download'})
 @app.route(
     '/admin/show/<testid>.<filetype>',
     defaults={'show_as': 'text'})
-@app.route(
-    '/admin/show/<testid>/<statstype>.<filetype>',
-    defaults={'show_as': 'text'})
+# @app.route(
+#     '/admin/show/<testid>/<statstype>.<filetype>',
+#     defaults={'show_as': 'text'})
 @only_admin_allowlist
 def download(testid, show_as, statstype=None, filetype='csv'):
     allowed_types = ('csv', 'pickle', 'json', 'html')
@@ -351,11 +351,11 @@ def download(testid, show_as, statstype=None, filetype='csv'):
 
 
 
-@app.context_processor
-def utility_processor():
-    def significance_stars(p, alpha=0.05):
-        return ''.join(['<span class="glyphicon glyphicon-star small"></span>'] * stats.significance_class(p, alpha))
-    return dict(significance_stars=significance_stars)
+# @app.context_processor
+# def utility_processor():
+#     def significance_stars(p, alpha=0.05):
+#         return ''.join(['<span class="glyphicon glyphicon-star small"></span>'] * stats.significance_class(p, alpha))
+#     return dict(significance_stars=significance_stars)
 
 @app.template_filter('datetime')
 def datetime_filter(value, format='%x %X'):
