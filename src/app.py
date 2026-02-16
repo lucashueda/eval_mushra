@@ -4,13 +4,67 @@ import pickle
 import io  # <--- CRITICAL: Was missing
 from flask import Flask, request, send_from_directory, send_file, \
     render_template, redirect, url_for, abort
-from tinyrecord import transaction
 # from tinydb import TinyDB
 from functools import wraps
 from io import BytesIO, StringIO
+import datetime
 
 # Import your local modules (ensure these .py files are in the same folder)
-from . import casting, utils
+def json_to_dict(payload):
+    """ Transform webMUSHRA JSON dict to sane structure
+
+    Parameters
+    ----------
+    payload : dict_like
+        The container to be transformed
+
+    Returns
+    -------
+    d : dict_like
+        The transformed container
+
+    Notes
+    -----
+
+    Actions taken:
+
+    1. One dataset per trial is generated
+    2. Config from global payload is inserted into all datasets
+    3. TestId from global payload is inserted into all datasets
+    4. date is added to all datasets
+    5. Questionaire structure
+
+        .. code-block:: python
+
+            {'name': ['firstname', 'age'], 'response': ['Nils', 29]}
+
+        becomes
+
+        .. code-block:: python
+
+            {'firstname': 'Nils', 'age': 29}
+
+    6. UUID4 field is added to questionaire
+
+    """
+    questionaire = payload['participant']
+    questionaire = dict(
+        zip(questionaire['name'], questionaire['response'])
+    )
+    questionaire['uuid'] = str(uuid.uuid4())
+    insert = []
+
+    for trial in payload['trials']:
+        data = trial
+
+        data['config'] = payload['config']
+        data['testId'] = payload['testId']
+        data['date'] = str(datetime.datetime.now())
+        data['questionaire'] = questionaire
+
+        insert.append(data)
+
+    return insert
 
 app = Flask(__name__)
 
@@ -58,14 +112,6 @@ if not os.path.exists(db_dir):
 
 app.config['db'] = None
 
-# --- DECORATORS ---
-def only_admin_allowlist(f):
-    @wraps(f)
-    def wrapped(*args, **kwargs):
-        if request.remote_addr in app.config['admin_allowlist']:
-            return f(*args, **kwargs)
-        return abort(403)
-    return wrapped
 
 # --- ROUTES ---
 
@@ -140,7 +186,7 @@ def collect():
             payload = json.loads(session_json)
             # WebMUSHRA data is deeply nested, let's flatten it for the sheet
             # We use your existing casting module
-            flat_data = casting.json_to_dict(payload) 
+            flat_data = json_to_dict(payload) 
             
             original_id = payload['trials'][0].get('testId', 'default_test')
             test_id = f"{original_id}_{str(uuid.uuid4())[:4]}"
@@ -170,196 +216,6 @@ def collect():
             return {'error': True, 'message': str(e)}
             
     return "400 Bad Request", 400
-
-@app.route('/admin/')
-@app.route('/admin/list')
-@only_admin_allowlist
-def admin_list():
-    db = app.config['db']
-    collection_names = db.tables()
-    
-    collections = []
-    for name in collection_names:
-        df = casting.collection_to_df(db.table(name))
-        if len(df) > 0:
-            collections.append({
-                'id': name,
-                'participants': len(df[('questionaire', 'uuid')].unique()),
-                'last_submission': df[('wm', 'date')].max(),
-            })
-
-    configs = utils.get_configs(os.path.join(app.config['webmushra_dir'], "configs"))
-    return render_template("admin/list.html", collections=collections, configs=configs)
-
-
-@app.route('/admin/delete/<testid>/')
-@only_admin_allowlist
-def admin_delete(testid):
-    app.config['db'].drop_table(testid)
-    return redirect(url_for('admin_list'))
-
-
-@app.route('/admin/info/<testid>/')
-@only_admin_allowlist
-def admin_info(testid):
-    collection = app.config['db'].table(testid)
-    df = casting.collection_to_df(collection)
-    try:
-        configs = df['wm']['config'].unique().tolist()
-    except KeyError:
-        configs = []
-
-    configs = map(os.path.basename, configs)
-
-    return render_template(
-        "admin/info.html",
-        testId=testid,
-        configs=configs
-    )
-
-
-@app.route('/admin/latest/<testid>/')
-@only_admin_allowlist
-def admin_latest(testid):
-    collection = app.config['db'].table(testid)
-    latest = sorted(collection.all(), key=lambda x: x['date'], reverse=True)[0]
-    return latest
-
-
-# @app.route('/admin/stats/<testid>/<stats_type>')
-# @only_admin_allowlist
-# def admin_stats(testid, stats_type='mushra'):
-#     collection = app.config['db'].table(testid)
-#     df = casting.collection_to_df(collection)
-#     df.columns = utils.flatten_columns(df.columns)
-#     # analyse mushra experiment
-#     try:
-#         if stats_type == "mushra":
-#             return stats.render_mushra(testid, df)
-#     except ValueError as e:
-#         return render_template(
-#             'error/error.html', type="Value", message=str(e)
-#         )
-#     return render_template('error/404.html'), 404
-
-@app.route(
-    '/admin/download/<testid>.<filetype>',
-    defaults={'show_as': 'download'})
-# @app.route(
-#     '/admin/download/<testid>/<statstype>.<filetype>',
-#     defaults={'show_as': 'download'})
-# @app.route(
-#     '/download/<testid>/<statstype>.<filetype>',
-#     defaults={'show_as': 'download'})
-@app.route(
-    '/download/<testid>.<filetype>',
-    defaults={'show_as': 'download'})
-@app.route(
-    '/admin/show/<testid>.<filetype>',
-    defaults={'show_as': 'text'})
-# @app.route(
-#     '/admin/show/<testid>/<statstype>.<filetype>',
-#     defaults={'show_as': 'text'})
-@only_admin_allowlist
-def download(testid, show_as, statstype=None, filetype='csv'):
-    allowed_types = ('csv', 'pickle', 'json', 'html')
-
-    if show_as == 'download':
-        as_attachment = True
-    else:
-        as_attachment = False
-
-    if filetype not in allowed_types:
-        return render_template(
-            'error/error.html',
-            type="Value",
-            message="File type must be in %s" % ','.join(allowed_types)
-        )
-
-    if filetype == "pickle" and not as_attachment:
-        return render_template(
-            'error/error.html',
-            type="Value",
-            message="Pickle data cannot be viewed"
-        )
-
-    collection = app.config['db'].table(testid)
-    df = casting.collection_to_df(collection)
-
-    if statstype is not None:
-        # subset by statstype
-        df = df[df[('wm', 'type')] == statstype]
-
-    # Merge hierarchical columns
-    if filetype not in ("pickle", "html"):
-        df.columns = utils.flatten_columns(df.columns.values)
-
-    if len(df) == 0:
-        return render_template(
-            'error/error.html',
-            type="Value",
-            message="Data Frame was empty"
-        )
-
-    if filetype == "csv":
-        # We need to escape certain objects in the DF to prevent Segfaults
-        mem = StringIO()
-        casting.escape_objects(df).to_csv(
-            mem,
-            sep=";",
-            index=False,
-            encoding='utf-8'
-        )
-
-    elif filetype == "html":
-        mem = StringIO()
-        df.sort_index(axis=1).to_html(mem, classes="table table-striped")
-
-    elif filetype == "pickle":
-        mem = BytesIO()
-        pickle.dump(df, mem)
-
-    elif filetype == "json":
-        mem = StringIO()
-        # We need to escape certain objects in the DF to prevent Segfaults
-        casting.escape_objects(df).to_json(mem, orient='records')
-
-    mem.seek(0)
-
-    if (as_attachment or filetype != "html") and not isinstance(mem, BytesIO):
-        mem2 = BytesIO()
-        mem2.write(mem.getvalue().encode('utf-8'))
-        mem2.seek(0)
-        mem = mem2
-
-    if as_attachment:
-        return send_file(
-            mem,
-            download_name="%s.%s" % (testid, filetype),
-            as_attachment=True,
-            max_age=-1
-        )
-    else:
-        if filetype == "html":
-            return render_template('admin/table.html', table=mem.getvalue())
-        else:
-            return send_file(
-                mem,
-                mimetype="text/plain",
-                cache_timeout=-1
-            )
-
-
-
-# @app.context_processor
-# def utility_processor():
-#     def significance_stars(p, alpha=0.05):
-#         return ''.join(['<span class="glyphicon glyphicon-star small"></span>'] * stats.significance_class(p, alpha))
-#     return dict(significance_stars=significance_stars)
-
-@app.template_filter('datetime')
-def datetime_filter(value, format='%x %X'):
-    return value.strftime(format)
 
 # --- EXECUTION ---
 if __name__ == '__main__':

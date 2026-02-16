@@ -4,7 +4,7 @@ flask==2.2.5
 # ipython
 # matplotlib
 # numpy
-pandas
+# pandas
 # patsy
 # scipy
 # seaborn
@@ -12,8 +12,8 @@ pandas
 # tinydb
 
 # Pip-only Extras
-tinyrecord
-hatchling
+# tinyrecord
+# hatchling
 
 # Google API & Auth
 gspread
