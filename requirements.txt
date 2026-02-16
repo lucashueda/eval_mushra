@@ -1,0 +1,23 @@
+# Core Dependencies
+click
+flask==2.2.5
+ipython
+matplotlib
+numpy
+pandas
+patsy
+scipy
+seaborn
+statsmodels
+tinydb
+
+# Pip-only Extras
+tinyrecord
+hatchling
+
+# Google API & Auth
+gspread
+oauth2client
+google-api-python-client
+google-auth-httplib2
+google-auth-oauthlib
