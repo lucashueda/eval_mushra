@@ -109,3 +109,5 @@ venv.bak/
 
 # webmushra/
 db/
+.vercel
+.env*.local

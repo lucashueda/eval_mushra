@@ -1,5 +1,5 @@
-testname: webMUSHRA Example
-testId: default_example
+testname: Evaluation audio samples
+testId: eval_tts
 bufferSize: 2048
 stopOnErrors: true
 showButtonPreviousPage: true
@@ -10,7 +10,40 @@ pages:
     - type: generic
       id: first_page
       name: Welcome
-      content: Welcome to webMUSHRA!       
+      content: Welcome to our evaluation test. In this evaluation test you will be asked to listen to some audio samples and rate them according to your perception. Please click the button below to start the test. 
+    - type: consent
+      id: consent_page
+      name: Consent
+      mustConsent: true
+      content: <p>You are participating in a listening test. For this, we want to store the answers you give to the following questions.<br>Do you give consent for this?</p>     
+    - type: likert_single_stimulus
+      id: lss2
+      name: likert
+      content: This is a Likert test with single stimulus and four responses. You have to rate to go further in the test.
+      mustRate: true    
+      stimuli:
+          C1: configs/resources/audio/mono_c1.wav
+      response:
+        - value: not at all
+          label: Not at all
+          img: configs/resources/images/star_off.png
+          imgSelected: configs/resources/images/star_on.png
+          imgHigherResponseSelected: configs/resources/images/star_on.png
+        - value: not a lot
+          label: Not a lot
+          img: configs/resources/images/star_off.png
+          imgSelected: configs/resources/images/star_on.png
+          imgHigherResponseSelected: configs/resources/images/star_on.png
+        - value: a bit
+          label: A bit
+          img: configs/resources/images/star_off.png
+          imgSelected: configs/resources/images/star_on.png
+          imgHigherResponseSelected: configs/resources/images/star_on.png
+        - value: much
+          label: Much
+          img: configs/resources/images/star_off.png
+          imgSelected: configs/resources/images/star_on.png
+          imgHigherResponseSelected: configs/resources/images/star_on.png 
     - type: mushra
       id: trial1
       name: MUSHRA

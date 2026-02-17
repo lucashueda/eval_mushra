@@ -167,9 +167,12 @@ def upload_json(service, name, data, file_id=None):
             supportsAllDrives=True # Required for service account uploads
         ).execute()
 
+import json
+
 def get_sheet():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name(os.environ.get('GOOGLE_SERVICE_ACCOUNT_JSON'), scope)
+    service_account_info = json.loads(os.environ.get('GOOGLE_SERVICE_ACCOUNT_JSON'))
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
     client = gspread.authorize(creds)
     return client.open(GOOGLE_SHEET_NAME)
 
