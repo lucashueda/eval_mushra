@@ -102,6 +102,9 @@ function addPagesToPageManager(_pageManager, _pages) {
       } else if (pageConfig.type == "likert_multi_stimulus") {
         var likertMultiStimulusPage = new LikertMultiStimulusPage(pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language);
         _pageManager.addPage(likertMultiStimulusPage);
+      } else if (pageConfig.type == "likert_multi_stimulus_reference") {
+        var likertMultiStimulusReferencePage = new LikertMultiStimulusReferencePage(pageManager, pageTemplateRenderer, pageConfig, audioContext, config.bufferSize, audioFileLoader, session, errorHandler, config.language);
+        _pageManager.addPage(likertMultiStimulusReferencePage);
       } else if (pageConfig.type == "finish") {
         var finishPage = new FinishPage(_pageManager, session, dataSender, pageConfig, config.language);
         _pageManager.addPage(finishPage);

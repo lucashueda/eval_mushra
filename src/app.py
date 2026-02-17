@@ -9,6 +9,16 @@ from functools import wraps
 from io import BytesIO, StringIO
 import datetime
 
+from dotenv import load_dotenv
+
+try:
+    # 1. Load Environment Variables
+    # Pointing to your specific path
+    env_path = "/Users/lucashueda/Documents/Doutorado/github/eval_mushra/.env.local"
+    load_dotenv(dotenv_path=env_path)
+except:
+    print("not loading local env")
+
 # Import your local modules (ensure these .py files are in the same folder)
 def json_to_dict(payload):
     """ Transform webMUSHRA JSON dict to sane structure
@@ -172,6 +182,8 @@ import json
 def get_sheet():
     scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
     service_account_info = json.loads(os.environ.get('GOOGLE_SERVICE_ACCOUNT_JSON'))
+    
+    print(service_account_info)
     creds = ServiceAccountCredentials.from_json_keyfile_dict(service_account_info, scope)
     client = gspread.authorize(creds)
     return client.open(GOOGLE_SHEET_NAME)
