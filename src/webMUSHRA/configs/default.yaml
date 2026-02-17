@@ -18,8 +18,8 @@ pages:
       content: <section><h3>Participation and Data Consent</h3><p>You are participating in a <b>listening test</b> designed for research purposes. By continuing, you agree to the collection and storage of your responses to the following questions. Your data will be used exclusively for this study to ensure accurate results. For a comprehensive explanation of your rights as a participant, including data privacy and withdrawal procedures, please review the <a href="https://drive.google.com/file/d/1dt40SDX2Lmmz2fRxY0VVliTTA-WaI3fS/view?usp=sharing" target="_blank" rel="noopener">Free and Informed Consent Form (PDF)</a>.</p><p>Do you give consent for this?</p></section>
     - type: volume
       id: vol
-      name: Volume settings
-      content: <section><p><b>Note:</b> For the best evaluation quality, please use <b>headphones or headsets</b> if available. Before starting, use the audio player below to adjust your volume to a comfortable level.</p></section>
+      name: Volume settings and instructions
+      content: <section><p><b>Note:</b> For the best evaluation quality, please use <b>headphones or headsets</b> if available. Before starting, use the audio player below to adjust your volume to a comfortable level.</p><p><b>IMPORTANT:</b> You will be requested to input your prolific ID in the final page of the this test. Your responses will be manually reviewed for consistency. <b>Only valid and complete answers will be considered for the platform.</b> Any signs of random clicking or failure to follow instructions will result in the rejection of your submission.</p></section>
       stimulus: configs/resources/audio/gt/samples_emos_GT/angry_0011_000433.wav
       defaultVolume: 0.5
     - type: generic
@@ -35,7 +35,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/angry_0011_000430.wav
               e3: configs/resources/audio/e3/samples_nmos/angry_0011_000430.wav
@@ -75,7 +75,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/angry_0011_000588.wav
               e3: configs/resources/audio/e3/samples_nmos/angry_0011_000588.wav
@@ -115,7 +115,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/angry_0015_000551.wav
               e3: configs/resources/audio/e3/samples_nmos/angry_0015_000551.wav
@@ -155,7 +155,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/angry_0015_000661.wav
               e3: configs/resources/audio/e3/samples_nmos/angry_0015_000661.wav
@@ -195,7 +195,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/happy_0011_000915.wav
               e3: configs/resources/audio/e3/samples_nmos/happy_0011_000915.wav
@@ -235,7 +235,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/happy_0011_000939.wav
               e3: configs/resources/audio/e3/samples_nmos/happy_0011_000939.wav
@@ -275,7 +275,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/happy_0015_000879.wav
               e3: configs/resources/audio/e3/samples_nmos/happy_0015_000879.wav
@@ -315,7 +315,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/happy_0015_000974.wav
               e3: configs/resources/audio/e3/samples_nmos/happy_0015_000974.wav
@@ -355,7 +355,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/sad_0011_001122.wav
               e3: configs/resources/audio/e3/samples_nmos/sad_0011_001122.wav
@@ -395,7 +395,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/sad_0011_001389.wav
               e3: configs/resources/audio/e3/samples_nmos/sad_0011_001389.wav
@@ -435,7 +435,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/sad_0015_001172.wav
               e3: configs/resources/audio/e3/samples_nmos/sad_0015_001172.wav
@@ -475,7 +475,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/sad_0015_001258.wav
               e3: configs/resources/audio/e3/samples_nmos/sad_0015_001258.wav
@@ -515,7 +515,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/surprise_0011_001416.wav
               e3: configs/resources/audio/e3/samples_nmos/surprise_0011_001416.wav
@@ -555,7 +555,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/surprise_0011_001616.wav
               e3: configs/resources/audio/e3/samples_nmos/surprise_0011_001616.wav
@@ -595,7 +595,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/surprise_0015_001451.wav
               e3: configs/resources/audio/e3/samples_nmos/surprise_0015_001451.wav
@@ -635,7 +635,7 @@ pages:
           content: Please evaluate how natural are the samples.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           stimuli:
               gt: configs/resources/audio/gt/samples_nmos_GT/surprise_0015_001454.wav
               e3: configs/resources/audio/e3/samples_nmos/surprise_0015_001454.wav
@@ -671,7 +671,7 @@ pages:
     - type: generic
       id: emotion
       name: Emotion Assessment
-      content: <section><h3>Part 2/3: Emotion Assessment</h3><p>In this section, you are asked to rate how natural each audio sample sounds. Please assign a score from <b>1 to 5</b> for each sample, where <b>1</b> is <b>completely artificial</b> and <b>5</b> is <b>completely natural</b>. Listen to each sample carefully before providing your rating.</p></section>
+      content: <h3>Part 2/3: Emotion Similarity Assessment</h3><p>Listen to the <b>Reference Emotion Sample</b> first, then rate how well the test samples match that specific emotion. Focus on the emotional intensity and category, following these rules:</p><ul><li><b>Focus on:</b> The type emotion conveyed by sample is similar to reference.</li><li><b>Ignore:</b> The speaker's identity or whether the voice sounds different.</li><li><b>Ignore:</b> Background noise, audio glitches, or overall recording quality.</li><li><b>Score Range:</b> 1 indicates the emotions are <b>entirely different</b>; 5 indicates the emotions are <b>identical</b>.</li></ul>
     -
       - random
       - 
@@ -681,7 +681,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0011_000430.wav
           reftext: Reference emotion sample
           stimuli:
@@ -723,7 +723,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0011_000588.wav
           reftext: Reference emotion sample
           stimuli:
@@ -765,7 +765,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0015_000551.wav
           reftext: Reference emotion sample
           stimuli:
@@ -807,7 +807,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0015_000661.wav
           reftext: Reference emotion sample
           stimuli:
@@ -849,7 +849,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0011_000939.wav
           reftext: Reference emotion sample
           stimuli:
@@ -891,7 +891,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0011_000915.wav
           reftext: Reference emotion sample
           stimuli:
@@ -933,7 +933,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0015_000879.wav
           reftext: Reference emotion sample
           stimuli:
@@ -975,7 +975,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0015_000974.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1017,7 +1017,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0011_001122.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1059,7 +1059,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0011_001389.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1101,7 +1101,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0015_001258.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1143,7 +1143,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0015_001172.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1185,7 +1185,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0011_001416.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1227,7 +1227,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0011_001616.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1269,7 +1269,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0015_001451.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1311,7 +1311,7 @@ pages:
           content: Please evaluate how close the emotion of each sample is to the reference one.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0015_001454.wav
           reftext: Reference emotion sample
           stimuli:
@@ -1346,10 +1346,11 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
+
     - type: generic
       id: speaker
       name: Speaker Assessment
-      content: <section><h3>Part 3/3: Speaker Assessment</h3><p>In this section, you are asked to rate how natural each audio sample sounds. Please assign a score from <b>1 to 5</b> for each sample, where <b>1</b> is <b>completely artificial</b> and <b>5</b> is <b>completely natural</b>. Listen to each sample carefully before providing your rating.</p></section>
+      content: <h3>Part 3/3: Speaker Similarity Assessment</h3><p>Listen to the <b>Reference Sample</b> first, then compare it to all test audios. Assign a score from 1 (Different voices) to 5 (Same voice) based on these criteria:</p><ul><li><b>Focus on:</b> The speaker's unique identity and vocal characteristics.</li><li><b>Ignore:</b> Differences in audio quality, background noise, or loudness.</li><li><b>Ignore:</b> The emotion, speaking rate, or prosody of the voice.</li></ul>
     -
       - random
       -
@@ -1359,7 +1360,7 @@ pages:
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0011_000430.wav
           reftext: Reference voice
           stimuli:
@@ -1401,7 +1402,7 @@ pages:
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0011_000588.wav
           reftext: Reference voice
           stimuli:
@@ -1443,7 +1444,7 @@ pages:
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0015_000551.wav
           reftext: Reference voice
           stimuli:
@@ -1485,7 +1486,7 @@ pages:
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/angry_0015_000661.wav
           reftext: Reference voice
           stimuli:
@@ -1520,14 +1521,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker5
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0011_000915.wav
           reftext: Reference voice
           stimuli:
@@ -1562,14 +1563,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker6
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0011_000939.wav
           reftext: Reference voice
           stimuli:
@@ -1604,14 +1605,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker7
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0015_000974.wav
           reftext: Reference voice
           stimuli:
@@ -1646,14 +1647,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker8
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/happy_0015_000879.wav
           reftext: Reference voice
           stimuli:
@@ -1688,14 +1689,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker9
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0011_001122.wav
           reftext: Reference voice
           stimuli:
@@ -1730,14 +1731,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker10
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0011_001389.wav
           reftext: Reference voice
           stimuli:
@@ -1772,14 +1773,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker11
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0015_001172.wav
           reftext: Reference voice
           stimuli:
@@ -1814,14 +1815,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker12
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/sad_0015_001258.wav
           reftext: Reference voice
           stimuli:
@@ -1856,14 +1857,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker13
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0011_001416.wav
           reftext: Reference voice
           stimuli:
@@ -1898,14 +1899,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker14
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0011_001616.wav
           reftext: Reference voice
           stimuli:
@@ -1940,14 +1941,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker15
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0015_001451.wav
           reftext: Reference voice
           stimuli:
@@ -1982,14 +1983,14 @@ pages:
               img: configs/resources/images/5_off.png
               imgSelected: configs/resources/images/5_on.png
               imgHigherResponseSelected: configs/resources/images/5_off.png
-        -
+      -
         - type: likert_multi_stimulus_reference
           id: speaker16
           name: Speaker Assessment
           content: Please evaluate how close is the voice of each sample to the reference voice.
           mustRate: true
           randomize: true
-          mustPlayback: false
+          mustPlayback: true
           reference: configs/resources/audio/gt/samples_nmos_GT/surprise_0015_001454.wav
           reftext: Reference voice
           stimuli:
@@ -2026,10 +2027,11 @@ pages:
               imgHigherResponseSelected: configs/resources/images/5_off.png
     - type: finish
       name: Thank you
-      content: Thank you for attending!
-      showResults: true
+      content: Thank you for attending! Please ensure to fill out your prolific ID! And send the results, this may take a few seconds, once a pop screen show up it successfully were registrated.
+      popupContent: Your results were sent. Goodbye and have a nice day  
+      # showResults: true
       writeResults: true
       questionnaire:
           - type: text
-            label: prolific_id
-            name: Prolific ID
+            label: Prolific ID
+            name: prolific_id
